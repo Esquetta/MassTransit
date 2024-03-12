@@ -1,6 +1,6 @@
 ﻿namespace Shared
 {
-    public interface IMessage
+    public interface IMessageC
     {
         string Text { get; set; }
     }

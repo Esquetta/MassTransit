@@ -3,7 +3,15 @@ using Shared;
 
 namespace Consumer1
 {
-    class Message : IMessage
+    class MessageA : IMessageA
+    {
+        public string Text { get; set; }
+    }
+    class MessageB : IMessageB
+    {
+        public string Text { get; set; }
+    }
+    class MessageC : IMessageC
     {
         public string Text { get; set; }
     }
@@ -29,22 +37,12 @@ namespace Consumer1
                 });
             });
 
-            await Task.Run(async () =>
-            {
-                while (true)
-                {
-                    Console.Write("Mesaj yaz : ");
-                    Message message = new Message
-                    {
-                        Text = Console.ReadLine()
-                    };
-                    if (message.Text.ToUpper() == "C")
-                        break;
-                    await bus.Publish<IMessage>(message);
-                    Console.WriteLine("");
-                }
-            });
+            await bus.Publish<IMessageA>(new MessageA { Text = "Message A" });
+            await bus.Publish<IMessageB>(new MessageB { Text = "Message B" });
+            await bus.Publish<IMessageC>(new MessageC { Text = "Message C" });
+            Console.WriteLine("Mesajlar gönderilmiştir.");
 
+            Console.Read();
         }
     }
 }

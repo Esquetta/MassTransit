@@ -4,7 +4,7 @@ using Shared;
 namespace Procuder
 {
 
-    class Message : IMessage
+    class Message : IMessageA
     {
         public string Text { get; set; }
     }
@@ -45,7 +45,7 @@ namespace Procuder
                     {
                         break;
                     }
-                    await endPoint.Send<IMessage>(message);
+                    await endPoint.Send<IMessageA>(message);
                     Console.WriteLine("");
                 }
 

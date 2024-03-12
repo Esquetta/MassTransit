@@ -4,13 +4,13 @@ using Shared;
 namespace Procuder
 {
 
-    class Message : IMessage
+    class Message : IMessageA
     {
         public string Text { get; set; }
     }
-    class MessageConsumer : IConsumer<IMessage>
+    class MessageConsumer : IConsumer<IMessageA>
     {
-        public async Task Consume(ConsumeContext<IMessage> context) => Console.WriteLine($"Gelen mesaj : {context.Message.Text}");
+        public async Task Consume(ConsumeContext<IMessageA> context) => Console.WriteLine($"Gelen mesaj : {context.Message.Text}");
     }
     class Program
     {
